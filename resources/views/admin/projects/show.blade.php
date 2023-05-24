@@ -33,6 +33,7 @@
 <div class="container mt-5 d-flex gap-3 justify-content-center align-items-center">
   <a href="{{route('admin.projects.index')}}" class="btn btn-primary d-flex align-items-center">Torna ai progetti</a>
   <a href="{{route('admin.types.index')}}" class="btn btn-info d-flex align-items-center">Torna alle tipologie</a>
+  <a href="{{route('admin.technologies.index')}}" class="btn btn-secondary d-flex align-items-center">Torna alle tecnologie</a>
   <a href="{{route('admin.projects.edit', $project)}}" class="btn btn-warning d-flex align-items-center">Modifica</a>
   <a href="{{route('admin.projects.destroy', $project)}}" class="btn btn-danger d-flex align-items-center" data-bs-toggle="modal" data-bs-target="#exampleModal">Elimina</a>
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

@@ -35,16 +35,23 @@
             @endif
         </td>
         <td>
-            <div class="d-flex py-3">
-                @foreach($project->technologies as $technology)
-                <span class="badge rounded-pill mx-1" style="background-color: {{$technology->color}}">{{$technology->name}}</span>
+            @if(count($project->technologies) > 0)
+            <ul style="padding:0; list-style-type:none">
+                @foreach($project->technologies as $item)
+                <li>
+                    <a href="{{route('admin.technologies.show', $item->slug)}}" class="badge rounded-pill mx-1" style="background-color: {{$item->color}}; text-decoration:none; color:white;">{{$item->name}}</a>
+                </li>
                 @endforeach
-            </div>
+            </ul>
+            
+            @else
+            <span class="fst-italic text-danger px-3">NN</span>
+            @endif
         </td>
         <td>{{$project->slug}}</td>
         <td>
-            <a href="{{route('admin.projects.show', $project->slug)}}"><i class="fa-solid fa-magnifying-glass"></i></a>
-            <a class="text-success" href="{{route('admin.projects.edit', $project->slug)}}"><i class="fa-solid fa-pen"></i></a>
+            <a href="{{route('admin.projects.show', $project)}}"><i class="fa-solid fa-magnifying-glass"></i></a>
+            <a class="text-success" href="{{route('admin.projects.edit', $project)}}"><i class="fa-solid fa-pen"></i></a>
             {{-- <a href="{{route('admin.projects.destroy', $project->slug)}}" class="text-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-trash"></i></a>
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
