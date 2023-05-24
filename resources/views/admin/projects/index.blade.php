@@ -15,6 +15,7 @@
     <th scope="col">Descrizione</th>
     <th scope="col">Contenuto</th>
     <th scope="col">Tipologia</th>
+    <th scope="col">Tecnologie</th>
     <th scope="col">Slug</th>
     <th scope="col">Comandi</th>
   </thead>
@@ -32,6 +33,13 @@
             @else
             <a href="{{route('admin.types.show', $project->type)}}">{{$project->type->type_name}}</a>
             @endif
+        </td>
+        <td>
+            <div class="d-flex py-3">
+                @foreach($project->technologies as $technology)
+                <span class="badge rounded-pill mx-1" style="background-color: {{$technology->color}}">{{$technology->name}}</span>
+                @endforeach
+            </div>
         </td>
         <td>{{$project->slug}}</td>
         <td>

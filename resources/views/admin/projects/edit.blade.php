@@ -35,6 +35,18 @@
       @enderror
     </div>
 
+    <div class="my-4 form-group d-flex flex-row">
+      <label for="technology">Tecnologie</label>
+      @foreach($technologies as $technology)
+        <div class="form-check">
+          {{--                                                                         aggiungere questo per fare il controllo dei check --}}
+          <input type="checkbox" id="technology-{{$technology->id}}" name="technologies[]" value="{{$technology->id}}" @checked($project->technologies->contains($technology))>
+          <label for="technology-{{$technology->id}}">{{$technology->name}}</label>
+        </div>
+      @endforeach
+
+    </div>
+
     <div class="mb-2">
       <label for="description">Descrizione</label>
       <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description">{{old('description') ?? $project->description}}</textarea>

@@ -9,6 +9,30 @@
   </div>
   <hr>
   <p>{{$type->description}}</p>
+
+  @if(count($type->projects) > 0)
+  <table class="table mb-4">
+    <thead>
+      <th>Titolo</th>
+      <th>Slug</th>
+    </thead>
+
+    <tbody>
+      @foreach($type->projects as $project)
+        <tr>
+          <td>{{$project->title}}</td>
+          <td>{{$project->slug}}</td>
+          <td><a href="{{route('admin.projects.show', $project)}}"><i class="fa-solid fa-magnifying-glass"></i></a></td>
+        </tr>
+      @endforeach
+
+    </tbody>
+  </table>
+  @else
+
+    <span class="fst-italic text-warning">Nessun progetto di questa categoria</span>
+      
+  @endif
   
 </div>
 <div class="container mt-5 d-flex gap-3 justify-content-center align-items-center">

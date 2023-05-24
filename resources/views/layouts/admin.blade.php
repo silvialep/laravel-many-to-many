@@ -60,7 +60,7 @@
                         </li>
                         @if (Route::has('register'))
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            <a class="nav-link" href="{{ route('register') }}">{{ __('Registrati') }}</a>
                         </li>
                         @endif
                         @else
@@ -73,7 +73,7 @@
                                 <a class="dropdown-item" href="{{ route('admin.dashboard.home') }}">{{__('Dashboard')}}</a>
                                 <a class="dropdown-item" href="{{ route('admin.projects.index') }}">{{__('Progetti')}}</a>
                                 <a class="dropdown-item" href="{{ route('admin.types.index') }}">{{__('Tipologie')}}</a>
-                                <a class="dropdown-item" href="{{ url('profile') }}">{{__('Profile')}}</a>
+                                <a class="dropdown-item" href="{{ url('profile') }}">{{__('Profilo')}}</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}

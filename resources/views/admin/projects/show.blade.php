@@ -14,10 +14,21 @@
     {{-- <span class="text-danger fst-italic">{{$project->type->type_name ?? 'Nessuna categoria'}}</span> --}}
   </div>
   <hr>
-  <h4>{{$project->description}}</h4>
-  <p>
-    {{$project->content}}
-  </p>
+  <div class="d-flex justify-content-between">
+    <div>
+      <strong>{{$project->description}}</strong>
+      <p>
+        {{$project->content}}
+      </p>
+    </div>
+    <div>
+      <div class="d-flex py-3">
+        @foreach($project->technologies as $technology)
+        <span class="badge rounded-pill mx-1" style="background-color: {{$technology->color}}">{{$technology->name}}</span>
+        @endforeach
+      </div>
+    </div>
+  </div>
 </div>
 <div class="container mt-5 d-flex gap-3 justify-content-center align-items-center">
   <a href="{{route('admin.projects.index')}}" class="btn btn-primary d-flex align-items-center">Torna ai progetti</a>

@@ -34,14 +34,16 @@
       @enderror
     </div>
 
-    <div class="mb-2">
-      <label for="description">Descrizione</label>
-      <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description">{{old('description')}}</textarea>
-      @error('description')
-      <div class="invalid-feedback">
-        {{$message}}
+    <div class="my-4 form-group d-flex flex-row">
+      <label for="technology">Tecnologie</label>
+
+      @foreach($technologies as $technology)
+      <div class="form-check">
+        <input type="checkbox" id="technology-{{$technology->id}}" name="technologies[]" value="{{$technology->id}}">
+        <label for="technology-{{$technology->id}}">{{$technology->name}}</label>
       </div>
-      @enderror
+      @endforeach
+
     </div>
 
     <div class="mb-4">
@@ -53,6 +55,18 @@
       </div>
       @enderror
     </div>
+
+    <div class="mb-2">
+      <label for="description">Descrizione</label>
+      <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description">{{old('description')}}</textarea>
+      @error('description')
+      <div class="invalid-feedback">
+        {{$message}}
+      </div>
+      @enderror
+    </div>
+
+    
 
     <button class="btn btn-primary" type="submit">Salva</button>
 
