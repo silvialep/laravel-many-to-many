@@ -56,7 +56,7 @@
                   @csrf
                   @method('DELETE')
                   
-                  <button type="submit" class="btn btn-danger">Elimina la tipologia</button>
+                  <button type="submit" class="btn btn-danger">Elimina la tecnologia</button>
                   </form>
               </div>
           </div>
