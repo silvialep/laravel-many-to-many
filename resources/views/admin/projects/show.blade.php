@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="main pt-5">
+<div class="main pt-5" style="height: calc(100vh - 350px)">
   <div class="d-flex justify-content-between align-items-center">
     <h1>{{$project->title}}</h1>
     @if(empty($project->type->type_name))

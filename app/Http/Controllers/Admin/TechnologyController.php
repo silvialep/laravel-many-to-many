@@ -32,7 +32,9 @@ class TechnologyController extends Controller
      */
     public function create()
     {
-        //
+        $technologies = Technology::all();
+
+        return view('admin.technologies.create', compact('technologies'));
     }
 
     /**
@@ -43,7 +45,23 @@ class TechnologyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $formData = $request->all();
+
+        $this->validateForm($formData);
+
+        $technology = new Technology();
+
+        $technology->fill($formData);
+
+        $technology->slug = Str::slug($technology->name, '-');
+
+        $technology->save();
+
+        if (array_key_exists('projects', $formData)) {
+            $technology->projects()->attach($formData['projects']);
+        }
+
+        return redirect()->route('admin.technologies.show', $technology);
     }
 
     /**
@@ -103,11 +121,12 @@ class TechnologyController extends Controller
     {
         $validator = Validator::make($formData, [
             'name' => 'required|unique:App\Models\Technology,name',
-            'color' => 'required',
+            'color' => 'required|unique:App\Models\Technology,color',
         ], [
             'name.required' => 'Il nome della tecnologia è richiesto',
             'name.unique' => 'È già presente una tecnologia con questo nome',
             'color.required' => 'Il colore della tecnologia è richiesto',
+            'color.unique' => 'Una tecnologia già presente ha questo colore',
         ])->validate();
         return $validator;
     }
