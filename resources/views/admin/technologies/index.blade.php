@@ -24,7 +24,7 @@
     <tr>
         <td style="color:deeppink; text-transform:uppercase; font-weight:bold">{{$technology->name}}</td>
         <td>{{$technology->slug}}</td>
-        <td>{{$technology->color}}</td>
+        <td><a href="{{route('admin.technologies.show', $technology)}}" class="badge rounded-pill" style="background-color: {{$technology->color}}; text-decoration:none; color: {{$technology->color}};">{{'test'}}</a></td>
         <td>
             @if(count($technology->projects) > 0)
               <ul style="padding:0; list-style-type:none">

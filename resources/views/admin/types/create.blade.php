@@ -4,7 +4,7 @@
 
 <h2 class="mt-5">Aggiungi una nuova tipologia</h2>
 
-<div class="container form-container py-5">
+<div class="container form-container py-5" style="height: calc(100vh - 350px)">
     <form action="{{route('admin.types.store')}}" method="POST">
     @csrf
 

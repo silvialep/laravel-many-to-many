@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Project;
 use App\Models\Technology;
+use App\Models\Type;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -64,7 +65,7 @@ class TechnologyController extends Controller
      */
     public function edit(Technology $technology)
     {
-        //
+        return view('admin.technologies.edit', compact('technology'));
     }
 
     /**
@@ -76,7 +77,15 @@ class TechnologyController extends Controller
      */
     public function update(Request $request, Technology $technology)
     {
-        //
+        $formData = $request->all();
+
+        $this->validateForm($formData);
+
+        $formData['slug'] = Str::slug($formData['name'], '-');
+
+        $technology->update($formData);
+
+        return redirect()->route('admin.technologies.show', $technology);
     }
 
     /**
@@ -88,5 +97,18 @@ class TechnologyController extends Controller
     public function destroy(Technology $technology)
     {
         //
+    }
+
+    private function validateForm($formData)
+    {
+        $validator = Validator::make($formData, [
+            'name' => 'required|unique:App\Models\Technology,name',
+            'color' => 'required',
+        ], [
+            'name.required' => 'Il nome della tecnologia è richiesto',
+            'name.unique' => 'È già presente una tecnologia con questo nome',
+            'color.required' => 'Il colore della tecnologia è richiesto',
+        ])->validate();
+        return $validator;
     }
 }

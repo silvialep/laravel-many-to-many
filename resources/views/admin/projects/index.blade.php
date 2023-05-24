@@ -9,7 +9,7 @@
 
 
 
-<table class="mt-5 table table-hover">
+<table class="mt-5 table table-hover" style="height: calc(100vh - 350px)">
   <thead>
     <th scope="col">Titolo</th>
     <th scope="col">Descrizione</th>
@@ -39,7 +39,7 @@
             <ul style="padding:0; list-style-type:none">
                 @foreach($project->technologies as $item)
                 <li>
-                    <a href="{{route('admin.technologies.show', $item->slug)}}" class="badge rounded-pill mx-1" style="background-color: {{$item->color}}; text-decoration:none; color:white;">{{$item->name}}</a>
+                    <a href="{{route('admin.technologies.show', $item)}}" class="badge rounded-pill mx-1" style="background-color: {{$item->color}}; text-decoration:none; color:white;">{{$item->name}}</a>
                 </li>
                 @endforeach
             </ul>
