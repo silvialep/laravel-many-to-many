@@ -52,7 +52,7 @@
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto d-flex align-items-center gap-3">
                         <!-- Authentication Links -->
                         @guest
                         <li class="nav-item">
@@ -64,6 +64,15 @@
                         </li>
                         @endif
                         @else
+                        <li>
+                            <a style="text-decoration:none; color:rgb(199, 200, 201);" href="{{ route('admin.projects.index') }}">{{__('Progetti')}}</a>
+                        </li>
+                        <li>
+                            <a style="text-decoration:none; color:rgb(199, 200, 201);" href="{{ route('admin.types.index') }}">{{__('Tipologie')}}</a>
+                        </li>
+                        <li>
+                            <a style="text-decoration:none; color:rgb(199, 200, 201);" href="{{ route('admin.technologies.index') }}">{{__('Tecnologie')}}</a>
+                        </li>
                         <li class="nav-item dropdown">
                             <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                 {{ Auth::user()->name }}
@@ -71,9 +80,6 @@
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('admin.dashboard.home') }}">{{__('Dashboard')}}</a>
-                                <a class="dropdown-item" href="{{ route('admin.projects.index') }}">{{__('Progetti')}}</a>
-                                <a class="dropdown-item" href="{{ route('admin.types.index') }}">{{__('Tipologie')}}</a>
-                                <a class="dropdown-item" href="{{ route('admin.technologies.index') }}">{{__('Tecnologie')}}</a>
                                 <a class="dropdown-item" href="{{ url('profile') }}">{{__('Profilo')}}</a>
                                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
