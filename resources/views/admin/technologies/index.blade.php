@@ -41,6 +41,29 @@
         <td>
             <a href="{{route('admin.technologies.show', $technology)}}"><i class="fa-solid fa-magnifying-glass"></i></a>
             <a class="text-success" href="{{route('admin.technologies.edit', $technology)}}"><i class="fa-solid fa-pen"></i></a>
+            <a href="{{route('admin.technologies.destroy', $technology)}}" class="text-danger" data-bs-toggle="modal" data-bs-target="#deleteTechnologyModal_{{$technology->id}}"><i class="fa-solid fa-trash"></i></a>
+            <div class="modal fade" id="deleteTechnologyModal_{{$technology->id}}" tabindex="-1" aria-labelledby="idLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h1 class="modal-title fs-5" id="idLabel">Elimina la tecnologia</h1>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                    <div class="modal-body">
+                        Sei sicuro di voler eliminare la tecnologia "{{$technology->name}}"?
+                    </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annulla</button>
+                            <form action="{{route('admin.technologies.destroy', $technology)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            
+                            <button type="submit" class="btn btn-danger">Elimina la tecnologia</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div> 
         </td>
     </tr>
     @endforeach

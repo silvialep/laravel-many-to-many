@@ -135,12 +135,14 @@ class ProjectController extends Controller
                 'type_id' => 'nullable|exists:types,id',
                 'description' => 'required',
                 'content' => 'required',
+                'technologies' => 'required',
             ],
             [
                 'title.required' => 'Il campo del titolo è richiesto',
                 'type_id.exists' => 'La tipologia deve essere una esistente',
                 'description.required' => 'Il campo della descrizione è richiesto',
                 'content.required' => 'Il contenuto è richiesto',
+                'technologies.required' => 'Almeno una tecnologia è richiesta',
 
             ]
         )->validate();

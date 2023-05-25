@@ -4,7 +4,7 @@
 
 <h2 class="mt-5">Aggiungi un nuovo progetto</h2>
 
-<div class="container form-container py-5" style="height: calc(100vh - 250px)">
+<div class="container form-container py-5" style="height: calc(100vh - 200px)">
     <form action="{{route('admin.projects.store')}}" method="POST">
     @csrf
 
@@ -34,15 +34,20 @@
       @enderror
     </div>
 
-    <div class="my-4 form-group d-flex flex-row">
+    <div class="my-4 form-group d-flex flex-row" style="position:relative">
       <label for="technology">Tecnologie</label>
 
       @foreach($technologies as $technology)
       <div class="form-check">
-        <input type="checkbox" id="technology-{{$technology->id}}" name="technologies[]" value="{{$technology->id}}">
+        <input type="checkbox" id="technology-{{$technology->id}}" name="technologies[]" value="{{$technology->id}}" @checked(in_array($technology->id, old('technologies', [])))>
         <label for="technology-{{$technology->id}}">{{$technology->name}}</label>
       </div>
       @endforeach
+      @error('technologies') 
+      <div class="text-danger" style="position:absolute; bottom:-20px; font-size:0.9rem">
+        {{$message}}
+      </div>
+      @enderror
 
     </div>
 
