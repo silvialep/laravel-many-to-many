@@ -121,11 +121,10 @@ class TechnologyController extends Controller
     private function validateForm($formData)
     {
         $validator = Validator::make($formData, [
-            'name' => 'required|unique:App\Models\Technology,name',
+            'name' => 'required',
             'color' => 'required|unique:App\Models\Technology,color',
         ], [
             'name.required' => 'Il nome della tecnologia è richiesto',
-            'name.unique' => 'È già presente una tecnologia con questo nome',
             'color.required' => 'Il colore della tecnologia è richiesto',
             'color.unique' => 'Una tecnologia già presente ha questo colore',
         ])->validate();

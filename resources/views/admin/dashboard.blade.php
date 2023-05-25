@@ -8,7 +8,8 @@
   <div style="height: calc(100vh - 350px)">
     <ul>
       <li><a href="{{route('admin.projects.index')}}">Mostra tutti i progetti</a></li>
-      <li><a href="{{route('admin.types.index')}}">Mostra tutte le tipologie di progetto</a></li>
+      <li><a href="{{route('admin.types.index')}}">Mostra tutte le tipologie</a></li>
+      <li><a href="{{route('admin.technologies.index')}}">Mostra tutte le tecnologie</a></li>
     </ul>
 
   </div>

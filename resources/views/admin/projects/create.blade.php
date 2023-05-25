@@ -67,8 +67,8 @@
     </div>
 
     
-
     <button class="btn btn-primary" type="submit">Salva</button>
+    <button href="{{url()->previous()}}" class="btn" style="background-color:rgb(208, 208, 215)">Cancel</button>
 
     
     

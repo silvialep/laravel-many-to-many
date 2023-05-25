@@ -22,7 +22,7 @@
 
     <div class="mb-2">
       <label for="color">Colore</label>
-      <textarea class="form-control @error('color') is-invalid @enderror" id="color" name="color">{{old('color') ?? $technology->color}}</textarea>
+      <input type="color" class="color-control @error('color') is-invalid @enderror" id="color" name="color" value="{{old('color') ?? $technology->color}}"></input>
       @error('color')
       <div class="invalid-feedback">
         {{$message}}
@@ -31,6 +31,7 @@
     </div>
 
     <button class="mt-3 btn btn-primary" type="submit">Salva</button>
+    <button href="{{url()->previous()}}" class="btn" style="background-color:rgb(208, 208, 215)">Cancel</button>
 
     
     
