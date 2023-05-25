@@ -4,7 +4,7 @@
 
 <h2 class="mt-5">Aggiungi un nuovo progetto</h2>
 
-<div class="container form-container py-5" style="height: calc(100vh - 350px)">
+<div class="container form-container py-5" style="height: calc(100vh - 250px)">
     <form action="{{route('admin.projects.store')}}" method="POST">
     @csrf
 
@@ -68,12 +68,13 @@
 
     
     <button class="btn btn-primary" type="submit">Salva</button>
-    <button href="{{url()->previous()}}" class="btn" style="background-color:rgb(208, 208, 215)">Cancel</button>
-
+    <input class="btn btn-warning" type="reset" value="Reset">
+    
     
     
     
   </form>
+  <button class="mt-2 btn pull-left" onclick="history.back()" style="background-color:rgb(208, 208, 215)">Indietro</button>
 
 </div>
 
