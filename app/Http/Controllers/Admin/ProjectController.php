@@ -7,6 +7,7 @@ use App\Models\Project;
 use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
@@ -50,6 +51,11 @@ class ProjectController extends Controller
         $this->validateForm($formData);
 
         $project = new Project();
+
+        if($request->hasFile('project_cover')) {
+            $path = Storage::put('project_images', $request->project_cover);
+            $formData['project_cover'] = $path;
+        }
 
         $project->fill($formData);
         
@@ -101,6 +107,15 @@ class ProjectController extends Controller
 
         $this->validateForm($formData);
 
+        if($request->hasFile('project_cover')) {
+            if($project->project_cover) {
+                Storage::delete($project->project_cover);
+            }
+
+            $path = Storage::put('project_images', $request->project_cover);
+            $formData['project_cover'] = $path;
+        }
+
         $project->slug = Str::slug($formData['title'], '-');
 
         $project->update($formData);
@@ -123,6 +138,9 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        if($project->project_cover) {
+            Storage::delete($project->project_cover);
+        }
         $project->delete();
         return redirect()->route('admin.projects.index');
     }
@@ -136,6 +154,7 @@ class ProjectController extends Controller
                 'description' => 'required',
                 'content' => 'required',
                 'technologies' => 'required',
+                'project_cover' => 'nullable|image|max:4096',
             ],
             [
                 'title.required' => 'Il campo del titolo è richiesto',
@@ -143,6 +162,8 @@ class ProjectController extends Controller
                 'description.required' => 'Il campo della descrizione è richiesto',
                 'content.required' => 'Il contenuto è richiesto',
                 'technologies.required' => 'Almeno una tecnologia è richiesta',
+                'project_cover.image' => 'Il file caricato deve essere di tipo :image',
+                'project_cover.max' => 'La dimensione del file non deve superare i 4 MB'
 
             ]
         )->validate();

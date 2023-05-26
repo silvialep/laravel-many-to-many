@@ -4,8 +4,8 @@
 
 <h2 class="mt-5">Modifica il progetto</h2>
 
-<div class="container form-container py-5" style="height: calc(100vh - 250px)">
-    <form action="{{route('admin.projects.update', $project->slug)}}" method="POST">
+<div class="container form-container py-5" style="height: calc(100vh - 150px)">
+    <form action="{{route('admin.projects.update', $project->slug)}}" method="POST" enctype="multipart/form-data">
     @csrf
 
     @method ('PUT')
@@ -55,16 +55,6 @@
 
     </div>
 
-    <div class="mb-2">
-      <label for="description">Descrizione</label>
-      <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description">{{old('description') ?? $project->description}}</textarea>
-      @error('description')
-      <div class="invalid-feedback">
-        {{$message}}
-      </div>
-      @enderror
-    </div>
-
     <div class="mb-4">
       <label for="content">Contenuto</label>
       <input class="form-control @error('content') is-invalid @enderror" type="text" id="content" name="content" value="{{old('content') ?? $project->content}}">
@@ -75,7 +65,30 @@
       @enderror
     </div>
 
-    <button class="btn btn-primary" type="submit">Salva</button>
+
+    <div class="mb-2">
+      <label for="description">Descrizione</label>
+      <textarea class="form-control @error('description') is-invalid @enderror" id="description" name="description">{{old('description') ?? $project->description}}</textarea>
+      @error('description')
+      <div class="invalid-feedback">
+        {{$message}}
+      </div>
+      @enderror
+    </div>
+
+    <div class="mb-3">
+      <label for="project_cover">Immagine di copertina</label>
+      <input type="file" id="project_cover" name="project_cover" class="form-control @error('project_cover') is-invalid @enderror" >
+      @error('project_cover')
+        <div class="invalid-feedback">
+          {{$message}}
+        </div>    
+      @enderror
+    </div>
+
+    
+
+    <button class="btn btn-primary mt-3" type="submit">Salva</button>
     
     
     

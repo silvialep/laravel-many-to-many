@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="main pt-5" style="height: calc(100vh - 350px)">
+<div class="main pt-5" style="height: calc(100vh - 150px)">
   <div class="d-flex justify-content-between align-items-center">
     <h1>{{$project->title}}</h1>
     @if(empty($project->type->type_name))
@@ -14,6 +14,9 @@
     {{-- <span class="text-danger fst-italic">{{$project->type->type_name ?? 'Nessuna categoria'}}</span> --}}
   </div>
   <hr>
+  <div style="width:300px; height:300px;">
+    <img style="width:300px" src="{{asset('storage/' . $project->project_cover)}}" alt="immagine progetto">
+  </div>
   <div class="d-flex justify-content-between">
     <div>
       <strong>{{$project->description}}</strong>
@@ -30,7 +33,7 @@
     </div>
   </div>
 </div>
-<div class="container mt-5 d-flex gap-3 justify-content-center align-items-center">
+<div class="container d-flex gap-3 justify-content-center align-items-center">
   <a href="{{route('admin.projects.index')}}" class="btn btn-primary d-flex align-items-center">Torna ai progetti</a>
   <a href="{{route('admin.types.index')}}" class="btn btn-info d-flex align-items-center">Torna alle tipologie</a>
   <a href="{{route('admin.technologies.index')}}" class="btn btn-secondary d-flex align-items-center">Torna alle tecnologie</a>

@@ -4,8 +4,8 @@
 
 <h2 class="mt-5">Aggiungi un nuovo progetto</h2>
 
-<div class="container form-container py-5" style="height: calc(100vh - 200px)">
-    <form action="{{route('admin.projects.store')}}" method="POST">
+<div class="container form-container py-5" style="height: calc(100vh - 100px)">
+    <form action="{{route('admin.projects.store')}}" method="POST" enctype="multipart/form-data">
     @csrf
 
 
@@ -71,9 +71,19 @@
       @enderror
     </div>
 
+    <div class="mb-2">
+      <label for="project_cover">Immagine</label>
+      <input type="file" id="project_cover" name="project_cover" class="form-control @error('project_cover') is-invalid @enderror">
+      @error('project_cover')
+        <div class="invalid-feedback">
+          {{$message}}
+        </div>    
+      @enderror
+    </div>
+
     
-    <button class="btn btn-primary" type="submit">Salva</button>
-    <input class="btn btn-warning" type="reset" value="Reset">
+    <button class="btn btn-primary mt-3" type="submit">Salva</button>
+    <input class="btn btn-warning mt-3" type="reset" value="Reset">
     
     
     
