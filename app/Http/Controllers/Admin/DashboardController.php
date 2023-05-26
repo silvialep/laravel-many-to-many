@@ -25,7 +25,7 @@ class DashboardController extends Controller
             $projects = Project::all();
         }
 
-        return view('admin.projects.index', compact(['projects']));
+        return view('admin.projects.search', compact(['projects']));
     }
 
  
