@@ -24,12 +24,15 @@ Route::get('/', function () {
 
 Route::middleware(['auth', 'verified'])->prefix('admin')->name('admin.')->group(function () {
 
+    Route::get('/', [DashboardController::class, 'home'])->name('dashboard.home');
+    Route::get('/search', [DashboardController::class, 'search'])->name('search');
     Route::resource('projects', ProjectController::class)->parameters(['projects' => 'project:slug']);
 
-    Route::get('/', [DashboardController::class, 'home'])->name('dashboard.home');
+    // Route::get('search', [DashboardController::class, 'search'])->name('searchProjects');
 
     Route::resource('types', TypeController::class)->parameters(['types' => 'type:slug']);
     Route::resource('technologies', TechnologyController::class)->parameters(['technologies' => 'technology:slug']);
+
 
 });
 

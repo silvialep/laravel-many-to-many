@@ -2,9 +2,16 @@
 
 @section('content')
 
-<div class="d-flex justify-content-between aling-items-center mt-5">
-    <h2>I miei progetti</h2>
-    <a href="{{route('admin.projects.create')}}" class="btn btn-success d-flex align-items-center">Nuovo progetto</a>
+<div class="d-flex justify-content-between align-items-center mt-5">
+    <div class="d-flex gap-4 align-items-center">
+        <h2>I miei progetti</h2>
+        <a href="{{route('admin.projects.create')}}" class="btn btn-success d-flex align-items-center"><i class="fa-solid fa-plus"></i></a>
+    </div>
+    <form class="m-3"  action="{{route('admin.search')}}" method="GET">
+    @csrf
+        <input type="text" name="title" id="title">
+        <button type="submit">Cerca</button>
+    </form>
 </div>
 
 
@@ -22,7 +29,7 @@
 
   <tbody>
 
-    @foreach($projects as $project)
+    @foreach($projects as $index => $project)
     <tr>
         <td style="color:deeppink; text-transform:uppercase; font-weight:bold">{{$project->title}}</td>
         <td>{{$project->description}}</td>

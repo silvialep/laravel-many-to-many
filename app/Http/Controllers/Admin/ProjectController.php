@@ -111,7 +111,7 @@ class ProjectController extends Controller
             $project->technologies()->detach();
         }
 
-        return redirect()->route('admin.projects.show', $project);
+        return redirect()->route('admin.projects.show', compact('project'));
 
     }
 
@@ -149,5 +149,7 @@ class ProjectController extends Controller
         return $validator;
 
     }
+
+    
     
 }

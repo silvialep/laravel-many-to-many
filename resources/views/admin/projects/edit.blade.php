@@ -37,13 +37,21 @@
 
     <div class="my-4 form-group d-flex flex-row">
       <label for="technology">Tecnologie</label>
-      @foreach($technologies as $technology)
-        <div class="form-check">
-          {{--                                                                         aggiungere questo per fare il controllo dei check --}}
-          <input type="checkbox" id="technology-{{$technology->id}}" name="technologies[]" value="{{$technology->id}}" @checked($project->technologies->contains($technology))>
-          <label for="technology-{{$technology->id}}">{{$technology->name}}</label>
+      <div class="form-check">
+        @foreach($technologies as $technology)
+          @if($errors->any())
+            <input id="technology_{{$technology->id}}" name="technologies[]" type="checkbox" value="{{$technology->id}}" @checked(in_array($technology->id, old('technologies', [])))>
+          @else
+            <input id="technology_{{$technology->id}}" name="technologies[]" type="checkbox" value="{{$technology->id}}" @checked($project->technologies->contains($technology->id))>
+          @endif
+        <label for="technology-{{$technology->id}}">{{$technology->name}}</label>
+        @endforeach
+      </div>
+      @error('technologies')
+        <div class="text-danger">
+          {{$message}}
         </div>
-      @endforeach
+      @enderror
 
     </div>
 

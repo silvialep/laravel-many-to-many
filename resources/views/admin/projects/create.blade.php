@@ -37,12 +37,12 @@
     <div class="my-4 form-group d-flex flex-row" style="position:relative">
       <label for="technology">Tecnologie</label>
 
-      @foreach($technologies as $technology)
       <div class="form-check">
+        @foreach($technologies as $technology)
         <input type="checkbox" id="technology-{{$technology->id}}" name="technologies[]" value="{{$technology->id}}" @checked(in_array($technology->id, old('technologies', [])))>
         <label for="technology-{{$technology->id}}">{{$technology->name}}</label>
+        @endforeach
       </div>
-      @endforeach
       @error('technologies') 
       <div class="text-danger" style="position:absolute; bottom:-20px; font-size:0.9rem">
         {{$message}}
